@@ -1,0 +1,43 @@
+The farmer's five sons got upset when they realised that the farmer favors the strongest of them. The farmer realises his mistake and hence is now no longer interested in who the strongest son is. Rather, he wants to know the collective strength of all his sons since Unity is Strength. The collective strength of all his sons is equal to the sum of strengths of all the sons. Again, since the farmer never went to school he needs your help to find it out.
+
+Find the total strength of the 5 sons he has
+
+Input Format
+
+Five space separated integers, ith of them denoting S[i].
+
+Constraints
+
+0 <= S[i] <= 100
+
+Output Format
+
+Output one number equal to the collective strength.
+
+Sample Input 0
+
+5 8 4 6 2
+Sample Output 0
+
+25
+Explanation 0
+
+5 + 8 + 4 + 6 + 2 = 25
+
+
+code:
+#include <stdio.h>
+
+int main() {
+    int strength[5];
+    int totalStrength = 0;
+    for (int i = 0; i < 5; i++) {
+        scanf("%d", &strength[i]);
+    }
+    for (int i = 0; i < 5; i++) {
+        totalStrength += strength[i];
+    }
+    printf("%d\n", totalStrength);
+
+    return 0;
+}
