@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct Stack {
+    int* arr;
+    int top;
+    int capacity;
+};
+
+struct Stack* createStack(int capacity) {
+    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+    stack->capacity = capacity;
+    stack->top = -1;
+    stack->arr = (int*)malloc(stack->capacity * sizeof(int));
+    return stack;
+}
+
+int isEmpty(struct Stack* stack) {
+    return stack->top == -1;
+}
+
+int isFull(struct Stack* stack) {
+    return stack->top == stack->capacity - 1;
+}
+
+void push(struct Stack* stack, int item) {
+    if (isFull(stack)) {
+        return;
+    }
+    stack->arr[++stack->top] = item;
+}
+
+int pop(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        return -1;
+    }
+    return stack->arr[stack->top--];
+}
+
+int top(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        return -1;
+    }
+    return stack->arr[stack->top];
+}
+
+int main() {
+    struct Stack* s = createStack(100);
+    struct Stack* ma = createStack(100);
+    int m = -1;
+    int q, t, v;
+    scanf("%d", &q);
+    while (q--) {
+        scanf("%d", &t);
+        if (t == 1) {
+            scanf("%d", &v);
+            if (isEmpty(ma)) {
+                push(ma, v);
+            }
+            else if (v > top(ma)) {
+                push(ma, v);
+            }
+            push(s, v);
+        }
+        else if (t == 2) {
+            if (top(s) == top(ma)) {
+                pop(ma);
+            }
+            pop(s);
+        }
+        else if (t == 3) {
+            printf("%d\n", top(ma));
+        }
+    }
+    return 0;
+}
