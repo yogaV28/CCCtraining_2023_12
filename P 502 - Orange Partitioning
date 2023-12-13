@@ -1,0 +1,34 @@
+code c++:
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void partitionOranges(int n, vector<int>& oranges) {
+    int k = 0;
+    for (int i = 0; i < n - 1; ++i) {
+        if (oranges[i] <= oranges[n - 1]) {
+            swap(oranges[i], oranges[k]);
+            ++k;
+        }
+    }
+    swap(oranges[k], oranges[n - 1]);
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> oranges(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> oranges[i];
+    }
+
+    partitionOranges(n, oranges);
+
+    for (int i = 0; i < n; ++i) {
+        cout << oranges[i] << " ";
+    }
+
+    return 0;
+}
